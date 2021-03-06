@@ -9,8 +9,8 @@ public class BancoTest {
     @Test
     public void deveCriarUmBancoComNomeInformado() {
         Banco banco = new Banco();
-        banco.setNome("Banco da Newton");
-        assertEquals("Banco da Newton", banco.getNome());
+        banco.nome = "Banco da Newton";
+        assertEquals("Banco da Newton", banco.nome);
 
     }
 }
