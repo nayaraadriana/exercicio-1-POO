@@ -1,8 +1,10 @@
 package test;
 
 import main.Agencia;
+import main.Correntista;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class AgenciaTest {
 
@@ -20,6 +22,18 @@ public class AgenciaTest {
         agencia.codigo = 1;
 
         assertEquals((Integer)1, agencia.codigo);
+    }
+
+    @Test
+    public void deveAdicionarCorrentistaNaAgencia() {
+        Correntista correntista = new Correntista();
+        correntista.nome = "Ana";
+        correntista.cpf = "55566677788";
+
+        Agencia agencia = new Agencia();
+        agencia.correntistas.add(correntista);
+
+        assertTrue(agencia.correntistas.contains(correntista));
     }
 
 }
