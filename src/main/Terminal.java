@@ -69,5 +69,6 @@ public class Terminal {
         System.out.println("1: Exibir saldo");
         System.out.println("2: Depositar");
         System.out.println("3: Sacar");
+        System.out.println("9: Encerrar Terminal");
     }
 }

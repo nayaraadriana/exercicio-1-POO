@@ -195,7 +195,7 @@ public class ContaCorrentTest {
         contaCorrente.senha = "123456";
         contaCorrente.depositar(100.01);
 
-        assertTrue(contaCorrente.contemTransacao("Depósito: 100.01"));
+        assertTrue(contaCorrente.contemTransacao("Depósito de 100.01"));
     }
 
     @Test
@@ -241,7 +241,7 @@ public class ContaCorrentTest {
             Assert.fail("Exception " + e);
         }
 
-        assertTrue(contaCorrente.contemTransacao("Pagamento conta: 9.01"));
+        assertTrue(contaCorrente.contemTransacao("Pagamento conta: 10.01"));
     }
 
     @Test

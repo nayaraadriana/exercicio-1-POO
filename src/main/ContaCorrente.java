@@ -14,7 +14,7 @@ public class ContaCorrente {
     }
 
     public void depositar(double valor) {
-        this.extrato.add("Depósito: 100.01");
+        this.extrato.add(String.format("Depósito de %s", valor));
         this.saldo += valor;
     }
 
@@ -22,7 +22,7 @@ public class ContaCorrente {
         if(valor > this.getSaldo()) {
             throw new Exception("Saldo insuficiente");
         }
-        this.extrato.add("Saque: 9.01");
+        this.extrato.add(String.format("Saque: %s", valor));
         this.saldo -= valor;
     }
 
@@ -30,7 +30,7 @@ public class ContaCorrente {
         if(valor > this.getSaldo()) {
             throw new Exception("Saldo insuficiente");
         }
-        this.extrato.add("Pagamento conta: 9.01");
+        this.extrato.add(String.format("Pagamento conta: %s", valor));
         this.saldo -= valor;
     }
 
