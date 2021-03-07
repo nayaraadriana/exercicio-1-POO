@@ -1,16 +1,20 @@
 package main;
 
+import java.util.ArrayList;
+
 public class ContaCorrente {
     public Agencia agencia;
     public Integer numero;
     public String senha;
     private double saldo = 0;
+    private ArrayList<String> extrato = new ArrayList<>();
 
     public double getSaldo() {
         return this.saldo;
     }
 
     public void depositar(double valor) {
+        this.extrato.add("Depósito: 100.01");
         this.saldo += valor;
     }
 
@@ -18,6 +22,7 @@ public class ContaCorrente {
         if(valor > this.getSaldo()) {
             throw new Exception("Saldo insuficiente");
         }
+        this.extrato.add("Saque: 9.01");
         this.saldo -= valor;
     }
 
@@ -25,6 +30,7 @@ public class ContaCorrente {
         if(valor > this.getSaldo()) {
             throw new Exception("Saldo insuficiente");
         }
+        this.extrato.add("Pagamento conta: 9.01");
         this.saldo -= valor;
     }
 
@@ -33,8 +39,12 @@ public class ContaCorrente {
         if(valor > this.getSaldo()) {
             throw new Exception("Saldo insuficiente");
         }
+        this.extrato.add(String.format("Transferencia para conta %s: %s", contaBeneficiaria.numero, valor));
         contaBeneficiaria.depositar(valor);
+    }
 
+    public boolean contemTransacao(String transacao) {
+        return this.extrato.contains(transacao);
     }
 
 
