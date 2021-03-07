@@ -38,7 +38,7 @@ public class Terminal {
                     System.out.println("Valor do depósito:");
                     valorDeposito = in.nextDouble();
                     contaCorrenteFulano.depositar(valorDeposito);
-                    System.out.println("\n--------------- \n");
+                    System.out.println("--------------- ");
                     Terminal.verOpcoesMenu();
                     break;
                 case 3:
@@ -53,6 +53,14 @@ public class Terminal {
                     }
                     System.out.println("---------------");
                     Terminal.verOpcoesMenu();
+                    break;
+                case 4:
+                    System.out.println("---------------");
+                    System.out.println("Opçao atual: Extrato");
+                    for (int i = 0; i < contaCorrenteFulano.getSizeExtrato(); i++) {
+                        System.out.format( "%d - %s \n", i+1, contaCorrenteFulano.getItemDoExtrato(i));
+                    }
+                    System.out.println("---------------");
                     break;
                 case 9:
                     System.out.println("Encerrar terminal");
@@ -69,6 +77,7 @@ public class Terminal {
         System.out.println("1: Exibir saldo");
         System.out.println("2: Depositar");
         System.out.println("3: Sacar");
+        System.out.println("4: Extrato");
         System.out.println("9: Encerrar Terminal");
     }
 }

@@ -47,6 +47,14 @@ public class ContaCorrente {
         return this.extrato.contains(transacao);
     }
 
+    public Integer getSizeExtrato () {
+        return this.extrato.size();
+    }
+
+    public String getItemDoExtrato(Integer posicao) {
+        return this.extrato.get(posicao);
+    }
+
 
 
 }

@@ -272,4 +272,55 @@ public class ContaCorrentTest {
         assertTrue(contaCorrenteFulano.contemTransacao("Transferencia para conta 6540: 100.0"));
     }
 
+    @Test
+    public void deveRetornarQuantidadeDeItensNoExtrato() {
+
+        Agencia agencia = new Agencia();
+        agencia.nome = "Carlos Luz";
+        agencia.codigo = 2;
+
+        ContaCorrente contaCorrente = new ContaCorrente();
+        contaCorrente.agencia = agencia;
+        contaCorrente.numero = 2030;
+        contaCorrente.senha = "123456";
+
+        contaCorrente.depositar(20.80);
+        contaCorrente.depositar(60.00);
+
+        assertEquals( (Integer)2 , contaCorrente.getSizeExtrato() );
+    }
+
+    @Test
+    public void deveRetornarExtratoSemRegistros() {
+
+        Agencia agencia = new Agencia();
+        agencia.nome = "Carlos Luz";
+        agencia.codigo = 2;
+
+        ContaCorrente contaCorrente = new ContaCorrente();
+        contaCorrente.agencia = agencia;
+        contaCorrente.numero = 2030;
+        contaCorrente.senha = "123456";
+
+        assertEquals( (Integer)0 , contaCorrente.getSizeExtrato() );
+    }
+
+    @Test
+    public void deveRetornarUmDeterminadoItemNoExtrato() {
+
+        Agencia agencia = new Agencia();
+        agencia.nome = "Carlos Luz";
+        agencia.codigo = 2;
+
+        ContaCorrente contaCorrente = new ContaCorrente();
+        contaCorrente.agencia = agencia;
+        contaCorrente.numero = 2030;
+        contaCorrente.senha = "123456";
+
+        contaCorrente.depositar(20.80);
+        contaCorrente.depositar(60.00);
+
+        assertEquals( "Depósito de 20.8" , contaCorrente.getItemDoExtrato(0) );
+    }
+
 }
