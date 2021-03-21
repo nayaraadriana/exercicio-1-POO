@@ -3,11 +3,28 @@ package main;
 import java.util.ArrayList;
 
 public class ContaCorrente {
-    public Agencia agencia;
-    public Integer numero;
+    private Agencia agencia;
+    private Correntista correntista;
+    private Integer numero;
     public String senha;
     private double saldo = 0;
     private ArrayList<String> extrato = new ArrayList<>();
+
+   public ContaCorrente (Agencia agencia, Correntista correntista) {
+        this.agencia = agencia;
+        this.correntista = correntista;
+        this.numero = agencia.getNumeroConta();
+
+   }
+
+   public Integer getNumero() {
+       return this.numero;
+   }
+
+
+    public Integer getCodigoAgencia (){
+       return agencia.getCodigo();
+    }
 
     public double getSaldo() {
         return this.saldo;

@@ -9,15 +9,14 @@ public class CorrentistaTest {
 
     @Test
     public void deveCriaUmCorrentistaComNomeInformado() {
-        Correntista correntista = new Correntista();
-        correntista.nome = "José Silva";
+        Correntista correntista = new Correntista("José Silva");
 
-        assertEquals("José Silva", correntista.nome);
+        assertEquals("José Silva", correntista.getNome());
     }
 
     @Test
     public void deveCriaUmCorrentistaComCpfInformado() {
-        Correntista correntista = new Correntista();
+        Correntista correntista = new Correntista("José Silva");
         correntista.cpf = "1122233344";
 
         assertEquals("1122233344", correntista.cpf);

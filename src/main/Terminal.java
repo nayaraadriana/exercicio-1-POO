@@ -1,3 +1,4 @@
+/*
 package main;
 
 import java.util.Locale;
@@ -58,7 +59,7 @@ public class Terminal {
                     System.out.println("---------------");
                     System.out.println("Opçao atual: Extrato");
                     for (int i = 0; i < contaCorrenteFulano.getSizeExtrato(); i++) {
-                        System.out.format( "%d - %s \n", i+1, contaCorrenteFulano.getItemDoExtrato(i));
+                        System.out.format( "%d0 - %s \n", i+1, contaCorrenteFulano.getItemDoExtrato(i));
                     }
                     System.out.println("---------------");
                     break;
@@ -81,3 +82,6 @@ public class Terminal {
         System.out.println("9: Encerrar Terminal");
     }
 }
+
+
+ */

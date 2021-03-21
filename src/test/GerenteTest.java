@@ -1,6 +1,7 @@
 package test;
 
 import main.Agencia;
+import main.Banco;
 import main.Gerente;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -17,9 +18,8 @@ public class GerenteTest {
 
     @Test
     public void deveAdicionarUmGerenteAumaAgencia() {
-        Agencia agencia = new Agencia();
-        agencia.codigo = 1;
-        agencia.nome = "Buritis";
+        Agencia agencia = new Agencia( "Centro", 6545);
+
 
         Gerente gerente = new Gerente();
         gerente.nome = "Manuel";

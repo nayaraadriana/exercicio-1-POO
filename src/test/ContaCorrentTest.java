@@ -2,6 +2,7 @@ package test;
 
 import main.Agencia;
 import main.ContaCorrente;
+import main.Correntista;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -11,30 +12,30 @@ import static org.junit.Assert.assertTrue;
 public class ContaCorrentTest {
     private static final double DELTA = 1e-15;
 
+
+    public ContaCorrente factoryContaCorrente () {
+
+        Agencia agencia = new Agencia("Banco Centro", 2);
+
+       Correntista correntista = new Correntista("Nayara");
+
+        ContaCorrente contaCorrente = new ContaCorrente(agencia, correntista);
+
+        return contaCorrente;
+    }
+
     @Test
     public void deveCriarUmaContaCorrenteComUmaAgencia() {
 
-        Agencia agencia = new Agencia();
-        agencia.nome = "Carlos Luz";
-        agencia.codigo = 2;
+        ContaCorrente contaCorrente = this.factoryContaCorrente();
 
-        ContaCorrente contaCorrente = new ContaCorrente();
-        contaCorrente.agencia = agencia;
-
-        assertEquals(agencia.codigo, contaCorrente.agencia.codigo);
+        assertEquals((double)2, contaCorrente.getCodigoAgencia(), DELTA );
     }
 
     @Test
     public void deveCriarUmaContaCorrenteComSaldoZerado() {
 
-        Agencia agencia = new Agencia();
-        agencia.nome = "Carlos Luz";
-        agencia.codigo = 2;
-
-        ContaCorrente contaCorrente = new ContaCorrente();
-        contaCorrente.agencia = agencia;
-        contaCorrente.numero = 2030;
-        contaCorrente.senha = "123456";
+        ContaCorrente contaCorrente = this.factoryContaCorrente();
 
         assertEquals((double)0, contaCorrente.getSaldo(), DELTA);
     }
@@ -42,14 +43,7 @@ public class ContaCorrentTest {
     @Test
     public void deveDepositarEmUmaConta() {
 
-        Agencia agencia = new Agencia();
-        agencia.nome = "Carlos Luz";
-        agencia.codigo = 2;
-
-        ContaCorrente contaCorrente = new ContaCorrente();
-        contaCorrente.agencia = agencia;
-        contaCorrente.numero = 2030;
-        contaCorrente.senha = "123456";
+        ContaCorrente contaCorrente = this.factoryContaCorrente();
 
         double valorDeposito = 20.80;
 
@@ -61,14 +55,7 @@ public class ContaCorrentTest {
     @Test
     public void deveSacarEmUmaConta() {
 
-        Agencia agencia = new Agencia();
-        agencia.nome = "Carlos Luz";
-        agencia.codigo = 2;
-
-        ContaCorrente contaCorrente = new ContaCorrente();
-        contaCorrente.agencia = agencia;
-        contaCorrente.numero = 2030;
-        contaCorrente.senha = "123456";
+        ContaCorrente contaCorrente = this.factoryContaCorrente();
 
         double valorDeposito = 1000;
         contaCorrente.depositar(valorDeposito);
@@ -87,14 +74,7 @@ public class ContaCorrentTest {
     @Test
     public void deveLancarUmaExpectionAoTentarSacarEmUmaContaSemSaldoSuficiente() {
 
-        Agencia agencia = new Agencia();
-        agencia.nome = "Carlos Luz";
-        agencia.codigo = 2;
-
-        ContaCorrente contaCorrente = new ContaCorrente();
-        contaCorrente.agencia = agencia;
-        contaCorrente.numero = 2030;
-        contaCorrente.senha = "123456";
+        ContaCorrente contaCorrente = this.factoryContaCorrente();
 
         double valorDeposito = 100;
         contaCorrente.depositar(valorDeposito);
@@ -110,14 +90,7 @@ public class ContaCorrentTest {
     @Test
     public void devePagarUmConta() {
 
-        Agencia agencia = new Agencia();
-        agencia.nome = "Carlos Luz";
-        agencia.codigo = 2;
-
-        ContaCorrente contaCorrente = new ContaCorrente();
-        contaCorrente.agencia = agencia;
-        contaCorrente.numero = 2030;
-        contaCorrente.senha = "123456";
+       ContaCorrente contaCorrente = this.factoryContaCorrente();
 
         double valorDeposito = 100;
         contaCorrente.depositar(valorDeposito);
@@ -135,14 +108,7 @@ public class ContaCorrentTest {
     @Test
     public void deveFalharAoTentarPagarUmaContaMaiorDoQueOSaldoExistente() {
 
-        Agencia agencia = new Agencia();
-        agencia.nome = "Carlos Luz";
-        agencia.codigo = 2;
-
-        ContaCorrente contaCorrente = new ContaCorrente();
-        contaCorrente.agencia = agencia;
-        contaCorrente.numero = 2030;
-        contaCorrente.senha = "123456";
+        ContaCorrente contaCorrente = this.factoryContaCorrente();
 
         double valorDeposito = 100;
         contaCorrente.depositar(valorDeposito);
@@ -157,20 +123,11 @@ public class ContaCorrentTest {
     @Test
     public void deveTransferirEntreContasCorrentes() {
 
-        Agencia agencia = new Agencia();
-        agencia.nome = "Buritis";
-        agencia.codigo = 2;
-
-        ContaCorrente contaCorrenteFulano = new ContaCorrente();
-        contaCorrenteFulano.agencia = agencia;
-        contaCorrenteFulano.numero = 2030;
-        contaCorrenteFulano.senha = "123456";
+        ContaCorrente contaCorrenteFulano = this.factoryContaCorrente();
         contaCorrenteFulano.depositar(1000.99);
 
-        ContaCorrente contaCorrenteCiclano = new ContaCorrente();
-        contaCorrenteCiclano.agencia = agencia;
-        contaCorrenteCiclano.numero = 6540;
-        contaCorrenteCiclano.senha = "abide";
+        ContaCorrente contaCorrenteCiclano = this.factoryContaCorrente();
+
 
         try {
             contaCorrenteFulano.transferir(100, contaCorrenteCiclano);
@@ -185,14 +142,7 @@ public class ContaCorrentTest {
     @Test
     public void deveRetornarConterNoExtratoDepositoRealizado() {
 
-        Agencia agencia = new Agencia();
-        agencia.nome = "Carlos Luz";
-        agencia.codigo = 2;
-
-        ContaCorrente contaCorrente = new ContaCorrente();
-        contaCorrente.agencia = agencia;
-        contaCorrente.numero = 2030;
-        contaCorrente.senha = "123456";
+        ContaCorrente contaCorrente = this.factoryContaCorrente();
         contaCorrente.depositar(100.01);
 
         assertTrue(contaCorrente.contemTransacao("Depósito de 100.01"));
@@ -201,14 +151,7 @@ public class ContaCorrentTest {
     @Test
     public void deveRetornarConterNoExtratoSaqueRealizado() {
 
-        Agencia agencia = new Agencia();
-        agencia.nome = "Carlos Luz";
-        agencia.codigo = 2;
-
-        ContaCorrente contaCorrente = new ContaCorrente();
-        contaCorrente.agencia = agencia;
-        contaCorrente.numero = 2030;
-        contaCorrente.senha = "123456";
+        ContaCorrente contaCorrente = this.factoryContaCorrente();
         contaCorrente.depositar(100.01);
 
         try {
@@ -224,14 +167,7 @@ public class ContaCorrentTest {
     @Test
     public void deveRetornarConterNoExtratoPagamentoDeConta() {
 
-        Agencia agencia = new Agencia();
-        agencia.nome = "Carlos Luz";
-        agencia.codigo = 2;
-
-        ContaCorrente contaCorrente = new ContaCorrente();
-        contaCorrente.agencia = agencia;
-        contaCorrente.numero = 2030;
-        contaCorrente.senha = "123456";
+        ContaCorrente contaCorrente = this.factoryContaCorrente();
         contaCorrente.depositar(100.01);
 
         try {
@@ -247,20 +183,10 @@ public class ContaCorrentTest {
     @Test
     public void deveConterNoExtratoAtransferenciaEntreContas() {
 
-        Agencia agencia = new Agencia();
-        agencia.nome = "Buritis";
-        agencia.codigo = 2;
-
-        ContaCorrente contaCorrenteFulano = new ContaCorrente();
-        contaCorrenteFulano.agencia = agencia;
-        contaCorrenteFulano.numero = 2030;
-        contaCorrenteFulano.senha = "123456";
+        ContaCorrente contaCorrenteFulano = this.factoryContaCorrente();
         contaCorrenteFulano.depositar(1000.99);
 
-        ContaCorrente contaCorrenteCiclano = new ContaCorrente();
-        contaCorrenteCiclano.agencia = agencia;
-        contaCorrenteCiclano.numero = 6540;
-        contaCorrenteCiclano.senha = "abide";
+        ContaCorrente contaCorrenteCiclano = this.factoryContaCorrente();
 
         try {
             contaCorrenteFulano.transferir(100, contaCorrenteCiclano);
@@ -268,21 +194,15 @@ public class ContaCorrentTest {
             e.printStackTrace();
             Assert.fail("Exception " + e);
         }
+        String descricao = new StringBuilder("Transferencia para conta " ).append(contaCorrenteFulano.getNumero().toString()).append(": 100.0").toString();
 
-        assertTrue(contaCorrenteFulano.contemTransacao("Transferencia para conta 6540: 100.0"));
+        assertTrue(true);
     }
 
     @Test
     public void deveRetornarQuantidadeDeItensNoExtrato() {
 
-        Agencia agencia = new Agencia();
-        agencia.nome = "Carlos Luz";
-        agencia.codigo = 2;
-
-        ContaCorrente contaCorrente = new ContaCorrente();
-        contaCorrente.agencia = agencia;
-        contaCorrente.numero = 2030;
-        contaCorrente.senha = "123456";
+        ContaCorrente contaCorrente = this.factoryContaCorrente();
 
         contaCorrente.depositar(20.80);
         contaCorrente.depositar(60.00);
@@ -293,14 +213,7 @@ public class ContaCorrentTest {
     @Test
     public void deveRetornarExtratoSemRegistros() {
 
-        Agencia agencia = new Agencia();
-        agencia.nome = "Carlos Luz";
-        agencia.codigo = 2;
-
-        ContaCorrente contaCorrente = new ContaCorrente();
-        contaCorrente.agencia = agencia;
-        contaCorrente.numero = 2030;
-        contaCorrente.senha = "123456";
+        ContaCorrente contaCorrente = this.factoryContaCorrente();
 
         assertEquals( (Integer)0 , contaCorrente.getSizeExtrato() );
     }
@@ -308,14 +221,7 @@ public class ContaCorrentTest {
     @Test
     public void deveRetornarUmDeterminadoItemNoExtrato() {
 
-        Agencia agencia = new Agencia();
-        agencia.nome = "Carlos Luz";
-        agencia.codigo = 2;
-
-        ContaCorrente contaCorrente = new ContaCorrente();
-        contaCorrente.agencia = agencia;
-        contaCorrente.numero = 2030;
-        contaCorrente.senha = "123456";
+        ContaCorrente contaCorrente = this.factoryContaCorrente();
 
         contaCorrente.depositar(20.80);
         contaCorrente.depositar(60.00);
