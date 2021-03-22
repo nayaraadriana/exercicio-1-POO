@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Banco {
     private String nome;
-    Map<String, ContaCorrente> contasCorrentes = new HashMap<String, ContaCorrente>();
+    private Map<String, ContaCorrente> contasCorrentes = new HashMap<String, ContaCorrente>();
 
     public Banco (String nome){
         
@@ -37,6 +37,10 @@ public class Banco {
         return this.contasCorrentes.get(codigoAgencia.toString()+numeroContaCorrente.toString());
     }
 
-
+    public HashMap<String, ContaCorrente> getContasCorrentes() {
+        HashMap<String, ContaCorrente> copyContasCorrentes = new HashMap<>();
+        copyContasCorrentes.putAll(this.contasCorrentes);
+        return copyContasCorrentes;
+    }
 
 }
