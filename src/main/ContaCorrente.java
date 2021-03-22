@@ -72,6 +72,14 @@ public class ContaCorrente {
         return this.extrato.get(posicao);
     }
 
+    public void atualizarCorrentista(Correntista correntista) {
+       this.correntista = correntista;
+    }
+
+    public String getNomeCorrentista() {
+       return this.correntista.getNome();
+    }
+
 
 
 }
